@@ -5,28 +5,29 @@ const user = require('../controllers/registrationController');
 
 //pobieranie wszystkich danych
 router.get('/all', function(req, res){
-    user.list(function(err, posts){
+    user.list(function(err, users){
         if(err) {
             res.status(404);
             res.json({
-                error: "Posts not found"
+                error: "Users not found"
             });
         } else {
-            res.json(posts);
+            res.json(users);
         }
     });
 });
 
 //Rejestracja uzytkownika
-router.post('/add', auth, function (req, res) {
-    user.add(req.body, function (err, post) {
+router.post('/add', function (req, res) {
+    user.add(req.body, function (err, user) {
         if(err) {
             res.status(404);
             res.json({
-                error: "Post not added"
+                error: "User not added"
             });
+        console.log(error);
         } else {
-            res.json(post);
+            res.json(user);
         }
     })
 });
@@ -37,7 +38,7 @@ router.put('/update/:id', function(req, res){
         if(err) {
             res.status(404);
             res.json({
-                error: "Post not found"
+                error: "User not found"
             });
         } else {
             res.json(data);
@@ -52,7 +53,7 @@ router.delete('/delete/:id', function(req, res){
         if(err) {
             res.status(404);
             res.json({
-                error: "Post not found"
+                error: "User not found"
             });
         } else {
             res.json(data);
