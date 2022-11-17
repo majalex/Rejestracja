@@ -25,7 +25,7 @@ router.post('/add', function (req, res) {
             res.json({
                 error: "User not added"
             });
-        console.log(error);
+        console.log(err);
         } else {
             res.json(user);
         }
@@ -33,7 +33,7 @@ router.post('/add', function (req, res) {
 });
 
 //zmiana danych
-router.put('/update/:id', function(req, res){
+router.patch('/update/:id', function(req, res){
     user.update(req.params.id, req.body, function(err, data){
         if(err) {
             res.status(404);
@@ -49,12 +49,14 @@ router.put('/update/:id', function(req, res){
 
 //usówanie
 router.delete('/delete/:id', function(req, res){
+    console.log(req.params.id);
     user.delete(req.params.id, function(err, data){
         if(err) {
             res.status(404);
             res.json({
                 error: "User not found"
             });
+            console.log(err);
         } else {
             res.json(data);
         }

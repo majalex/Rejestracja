@@ -24,7 +24,7 @@ function userAdd(data, cb) {
 }
 
 function userUpdate(id, data, cb) {
-    Post.updateOne({_id: id}, data, function(err, User) {
+    User.updateOne({_id: id}, data, function(err, User) {
  
         if(err) {
             cb(err);
@@ -36,7 +36,7 @@ function userUpdate(id, data, cb) {
 }
 
 function userDelete(id, cb) {
-    Post.deleteOne({_id: id},function (err, User) {
+    User.deleteOne({_id: id},function (err, User) {
         if (err) {
             cb(err);
         } else {
